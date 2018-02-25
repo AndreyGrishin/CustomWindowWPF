@@ -1,0 +1,19 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:CustomWindow.Themes">
+
+
+    <!--#region Colors-->
+
+    <SolidColorBrush x:Key="FirstMainColor" Color="#FF1F1F1F" />
+    <SolidColorBrush x:Key="SecondMainColor" Color="#FF2F2F2F" />
+    <SolidColorBrush x:Key="ThirdMainColor" Color="#FF2B2B2B" />
+    <SolidColorBrush x:Key="FourthMainColor" Color="#393939" />
+
+    <SolidColorBrush x:Key="TextColor" Color="White" />
+
+    <!--#endregion-->
+
+
+</ResourceDictionary>

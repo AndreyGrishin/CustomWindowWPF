@@ -1,0 +1,17 @@
+﻿<Application
+    x:Class="CustomWindow.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--  Resource Dictionaries  -->
+            <ResourceDictionary.MergedDictionaries>
+                <!--<ResourceDictionary Source="Themes/DarkStyle.xaml" />-->
+                <ResourceDictionary Source="Themes/LightWindow.xaml" />
+                <ResourceDictionary Source="Themes/CustomWindow.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
