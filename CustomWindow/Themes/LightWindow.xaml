@@ -6,12 +6,15 @@
     <!--#region Colors-->
 
     <SolidColorBrush x:Key="FirstMainColor" Color="#FCFCFC" />
-    <SolidColorBrush x:Key="SecondMainColor" Color="#595959" />
-    <SolidColorBrush x:Key="ThirdMainColor" Color="#8AE01B" />
+    <SolidColorBrush x:Key="SecondMainColor" Color="#FFF9F9F9" />
+    <SolidColorBrush x:Key="ThirdMainColor" Color="#C6C6C6" />
     <SolidColorBrush x:Key="FourthMainColor" Color="#B9C616" />
 
 
     <SolidColorBrush x:Key="TextColor" Color="#101010" />
+
+    <SolidColorBrush x:Key="WindowButtonsForeground" Color="#222222" />
+    <SolidColorBrush x:Key="WindowButtons.Foreground.MouseOver" Color="White" />
 
     <!--#endregion-->
     

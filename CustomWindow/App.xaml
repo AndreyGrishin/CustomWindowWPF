@@ -11,6 +11,13 @@
                 <ResourceDictionary Source="Themes/LightWindow.xaml" />
                 <ResourceDictionary Source="Themes/CustomWindow.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="TitleTextBlockStyle" TargetType="{x:Type TextBlock}">
+                <Setter Property="TextWrapping" Value="NoWrap"/>
+                <Setter Property="TextTrimming" Value="None"/>
+                <Setter Property="Foreground" Value="{DynamicResource ColorfulColor}"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+            </Style>
 
         </ResourceDictionary>
     </Application.Resources>

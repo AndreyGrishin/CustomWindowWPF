@@ -13,6 +13,9 @@
 
     <SolidColorBrush x:Key="TextColor" Color="White" />
 
+    <SolidColorBrush x:Key="WindowButtonsForeground" Color="White" />
+    <SolidColorBrush x:Key="WindowButtons.Foreground.MouseOver" Color="White" />
+
     <!--#endregion-->
 
 
