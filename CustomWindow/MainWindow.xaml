@@ -11,16 +11,53 @@
     Style="{DynamicResource CustomWindowStyle}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-    <Grid >
+    <Grid>
         <StackPanel Margin="0,20,0,0">
-            <StackPanel Orientation="Vertical" Margin="20,0,0,0">
-                <TextBlock TextWrapping="Wrap" Text="THEME" Style="{DynamicResource TitleTextBlockStyle}"/>
-                <TextBlock TextWrapping="Wrap" Text="Select application theme:" Margin="0,5,0,0"/>
-                <RadioButton></RadioButton>
+            <StackPanel Margin="20,0,0,0" Orientation="Vertical">
+                <TextBlock
+                    Style="{DynamicResource TitleTextBlockStyle}"
+                    Text="THEME"
+                    TextWrapping="Wrap" />
+                <TextBlock
+                    Margin="0,5,0,0"
+                    Text="Select application theme:"
+                    TextWrapping="Wrap" />
+                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                    <ToggleButton
+                        x:Name="ThemeToggleSwitch"
+                        Width="44"
+                        HorizontalAlignment="Left"
+                        Style="{DynamicResource ToggleButtonStyle}" />
+                    <TextBlock
+                        Margin="15,0,0,0"
+                        VerticalAlignment="Center"
+                        FontFamily="Sergio UI"
+                        FontSize="16">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Text" Value="Light" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=ThemeToggleSwitch, Path=IsChecked}" Value="True">
+                                        <Setter Property="Text" Value="Dark" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ElementName=ThemeToggleSwitch, Path=IsEnabled}" Value="false">
+                                        <Setter Property="Opacity" Value="0.2" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="20,20,0,0">
-                <TextBlock TextWrapping="Wrap" Text="COLORS" Style="{DynamicResource TitleTextBlockStyle}"/>
-                <TextBlock TextWrapping="Wrap" Text="Select application color:" Margin="0,5,0,0"/>
+            <StackPanel Margin="20,20,0,0" Orientation="Vertical">
+                <TextBlock
+                    Style="{DynamicResource TitleTextBlockStyle}"
+                    Text="COLORS"
+                    TextWrapping="Wrap" />
+                <TextBlock
+                    Margin="0,5,0,0"
+                    Text="Select application color:"
+                    TextWrapping="Wrap" />
             </StackPanel>
         </StackPanel>
     </Grid>
