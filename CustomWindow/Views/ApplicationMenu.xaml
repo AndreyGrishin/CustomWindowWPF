@@ -30,12 +30,10 @@
             VerticalAlignment="Center"
             Background="{x:Null}">
             <MenuItem
-                Width="55"
-                Header="Themes"
+                Header="About"
                 Style="{DynamicResource MenuItemStyle}"
                 TabIndex="0" Margin="5,0,0,0" ItemContainerStyle="{DynamicResource MenuItemStyle}">
-                <RadioButton Content="Dark Theme" Style="{DynamicResource RadioButtonStyle}" Margin="0"/>
-                <RadioButton Content="Light Theme" Style="{DynamicResource RadioButtonStyle}"/>
+                <MenuItem Header="About project" Style="{DynamicResource MenuItemStyle}"></MenuItem>
             </MenuItem>
         </Menu>
     </StackPanel>

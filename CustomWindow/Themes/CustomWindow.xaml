@@ -23,8 +23,8 @@
         <Setter Property="Focusable" Value="false" />
         <Setter Property="Width" Value="50" />
         <Setter Property="Height" Value="32" />
-        <Setter Property="Background" Value="{StaticResource FirstMainColor}" />
-        <Setter Property="Foreground" Value="{StaticResource WindowButtonsForeground}" />
+        <Setter Property="Background" Value="{DynamicResource FirstMainColor}" />
+        <Setter Property="Foreground" Value="{DynamicResource WindowButtonsForeground}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -66,6 +66,81 @@
                         <Trigger Property="IsPressed" Value="True">
                             <Setter Property="Background" Value="{DynamicResource ButtonClosePressedColor}" />
                             <Setter Property="Foreground" Value="{DynamicResource WindowButtons.Foreground.MouseOver}"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="ToggleSwitchButtonStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusVisual}"/>
+        <Setter Property="Background" Value="{DynamicResource Button.Static.Background}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Button.Static.Border}"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextColor}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Opacity" Value="0.8"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Grid x:Name="grid">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CheckStates">
+                                <VisualState x:Name="Checked">
+                                    <Storyboard>
+                                        <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Ellipse">
+                                            <EasingThicknessKeyFrame KeyTime="0:0:0.3" Value="29,0,0,0"/>
+                                        </ThicknessAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unchecked">
+                                    <Storyboard>
+                                        <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Ellipse">
+                                            <EasingThicknessKeyFrame KeyTime="0:0:0.3" Value="4,0,0,0"/>
+                                        </ThicknessAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Indeterminate"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Ellipse x:Name="Ellipse" Fill="{TemplateBinding BorderBrush}" Height="11" Margin="4,0,0,0" HorizontalAlignment="Left" Width="11" VerticalAlignment="Center" Panel.ZIndex="1"/>
+                        <Border x:Name="border" Background="{TemplateBinding Background}" SnapsToDevicePixels="true" CornerRadius="10" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource ColorfulColor}"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Opacity" Value="1"/>
+                            <Setter Property="Fill" TargetName="Ellipse" Value="{DynamicResource Button.Pressed.Ellipse}"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                                <Condition Property="IsChecked" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Opacity" Value="0.8" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                                <Condition Property="IsChecked" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Opacity" Value="1" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Background" Value="{DynamicResource Button.Pressed.Background}"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Fill" TargetName="Ellipse" Value="{DynamicResource Button.Pressed.Ellipse}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" Value="0.5"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -174,7 +249,7 @@
                                                 x:Name="MinimizeButton"
                                                 Click="MinimizeButton_OnClick"
                                                 CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
-                                                Style="{StaticResource WindowHeaderButtonStyle}"
+                                                Style="{DynamicResource WindowHeaderButtonStyle}"
                                                 WindowChrome.IsHitTestVisibleInChrome="True">
                                                 <Grid MaxWidth="9" MaxHeight="9">
                                                     <Path
@@ -376,6 +451,8 @@
     <!--#endregion-->
 
 
+    <!--#region Menu-->
+
     <SolidColorBrush x:Key="MenuPopupSeparatorsStyle.Static.Fill" Color="#FF4A4A4A" />
 
     <ControlTemplate x:Key="ContextMenuItemControlTemplate" TargetType="{x:Type MenuItem}">
@@ -527,7 +604,7 @@
     </ControlTemplate>
 
     <Style x:Key="MenuItemStyle" TargetType="{x:Type MenuItem}">
-        <Setter Property="Foreground" Value="{StaticResource TextColor}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextColor}" />
         <Setter Property="Height" Value="32" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -570,7 +647,7 @@
                                     x:Name="SubMenuBorder"
                                     Padding="0"
                                     Background="{DynamicResource SecondMainColor}"
-                                    BorderBrush="{StaticResource ColorfulColor}"
+                                    BorderBrush="{DynamicResource ColorfulColor}"
                                     BorderThickness="1">
                                     <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
                                         <Grid RenderOptions.ClearTypeHint="Enabled">
@@ -602,8 +679,8 @@
                             <Setter TargetName="PART_Popup" Property="PopupAnimation" Value="None" />
                         </Trigger>
                         <Trigger Property="IsHighlighted" Value="True">
-                            <Setter TargetName="templateRoot" Property="Background" Value="{StaticResource ColorfulColor}" />
-                            <Setter Property="Foreground" Value="{StaticResource WindowButtons.Foreground.MouseOver}" />
+                            <Setter TargetName="templateRoot" Property="Background" Value="{DynamicResource ColorfulColor}" />
+                            <Setter Property="Foreground" Value="{DynamicResource WindowButtons.Foreground.MouseOver}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="templateRoot" Property="TextElement.Foreground" Value="#FF707070" />
@@ -629,82 +706,14 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-    <SolidColorBrush x:Key="Button.Static.Background" Color="Transparent"/>
-    <SolidColorBrush x:Key="Button.MouseOver.Border" Color="Black"/>
-    <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FF8F8F8F"/>
-    <SolidColorBrush x:Key="Button.Pressed.Ellipse" Color="White"/>
-
-    <Style x:Key="ToggleButtonStyle" TargetType="{x:Type ToggleButton}">
-        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-        <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
-        <Setter Property="BorderBrush" Value="#FF212121"/>
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-        <Setter Property="BorderThickness" Value="2"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Opacity" Value="0.8"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Grid x:Name="grid">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CheckStates">
-                                <VisualState x:Name="Checked">
-                                    <Storyboard>
-                                        <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Ellipse">
-                                            <EasingThicknessKeyFrame KeyTime="0:0:0.3" Value="29,0,0,0"/>
-                                        </ThicknessAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Unchecked">
-                                    <Storyboard>
-                                        <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="Ellipse">
-                                            <EasingThicknessKeyFrame KeyTime="0:0:0.3" Value="4,0,0,0"/>
-                                        </ThicknessAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Indeterminate"/>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Ellipse x:Name="Ellipse" Fill="{TemplateBinding BorderBrush}" Height="11" Margin="4,0,0,0" HorizontalAlignment="Left" Width="11" VerticalAlignment="Center" Panel.ZIndex="1"/>
-                        <Border x:Name="border" Background="{TemplateBinding Background}" SnapsToDevicePixels="true" CornerRadius="10" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"/>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsChecked" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource ColorfulColor}"/>
-                            <Setter Property="BorderThickness" Value="0"/>
-                            <Setter Property="Fill" TargetName="Ellipse" Value="{StaticResource Button.Pressed.Ellipse}"/>
-                        </Trigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsMouseOver" Value="True" />
-                                <Condition Property="IsChecked" Value="True" />
-                            </MultiTrigger.Conditions>
-                            <MultiTrigger.Setters>
-                                <Setter Property="Opacity" Value="0.8" />
-                            </MultiTrigger.Setters>
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsMouseOver" Value="True" />
-                                <Condition Property="IsChecked" Value="False" />
-                            </MultiTrigger.Conditions>
-                            <MultiTrigger.Setters>
-                                <Setter Property="Opacity" Value="1" />
-                            </MultiTrigger.Setters>
-                        </MultiTrigger>
-                        <Trigger Property="IsPressed" Value="true">
-                            <Setter Property="Background" Value="{StaticResource Button.Pressed.Background}"/>
-                            <Setter Property="BorderThickness" Value="0"/>
-                            <Setter Property="Fill" TargetName="Ellipse" Value="{StaticResource Button.Pressed.Ellipse}"/>
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Opacity" Value="0.5"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+    <Style x:Key="SubHeaderTextBlockStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="TextWrapping" Value="NoWrap"/>
+        <Setter Property="TextTrimming" Value="None"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextColor}"></Setter>
     </Style>
+
+    <!--#endregion-->
+
+
+
 </ResourceDictionary>

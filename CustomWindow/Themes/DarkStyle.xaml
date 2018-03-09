@@ -16,6 +16,11 @@
     <SolidColorBrush x:Key="WindowButtonsForeground" Color="White" />
     <SolidColorBrush x:Key="WindowButtons.Foreground.MouseOver" Color="White" />
 
+    <SolidColorBrush x:Key="Button.Static.Border" Color="White"/>
+    <SolidColorBrush x:Key="Button.Static.Background" Color="Transparent"/>
+    <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FF8F8F8F"/>
+    <SolidColorBrush x:Key="Button.Pressed.Ellipse" Color="White"/>
+
     <!--#endregion-->
 
 

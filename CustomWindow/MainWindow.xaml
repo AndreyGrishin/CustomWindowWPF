@@ -4,6 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:customWindow="clr-namespace:CustomWindow"
+    xmlns:controls="clr-namespace:CustomWindow.Controls"
     Title="CustomWindow"
     Width="650"
     Height="450"
@@ -12,53 +14,75 @@
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Grid>
-        <StackPanel Margin="0,20,0,0">
-            <StackPanel Margin="20,0,0,0" Orientation="Vertical">
-                <TextBlock
-                    Style="{DynamicResource TitleTextBlockStyle}"
-                    Text="THEME"
-                    TextWrapping="Wrap" />
-                <TextBlock
-                    Margin="0,5,0,0"
-                    Text="Select application theme:"
-                    TextWrapping="Wrap" />
-                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                    <ToggleButton
-                        x:Name="ThemeToggleSwitch"
-                        Width="44"
-                        HorizontalAlignment="Left"
-                        Style="{DynamicResource ToggleButtonStyle}" />
+        <ScrollViewer Margin="0,20,0,0" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Top">
                     <TextBlock
-                        Margin="15,0,0,0"
-                        VerticalAlignment="Center"
-                        FontFamily="Sergio UI"
-                        FontSize="16">
-                        <TextBlock.Style>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Text" Value="Light" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ElementName=ThemeToggleSwitch, Path=IsChecked}" Value="True">
-                                        <Setter Property="Text" Value="Dark" />
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding ElementName=ThemeToggleSwitch, Path=IsEnabled}" Value="false">
-                                        <Setter Property="Opacity" Value="0.2" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
+                        Style="{DynamicResource TitleTextBlockStyle}"
+                        Text="THEME"
+                        TextWrapping="Wrap" />
+                    <StackPanel
+                        Margin="0,10,0,0"
+                        HorizontalAlignment="Left"
+                        Orientation="Horizontal">
+                        <controls:ToggleSwitch x:Name="ThemesToggleSwitch" Header="Select application theme:" 
+                                               OnContent="Dark"
+                                               OffContent="Light"
+                                               Toggled="ToggleSwitch_OnToggled"/>
+                        <ToggleButton
+                            x:Name="ThemeToggleSwitch"
+                            Width="44"
+                            HorizontalAlignment="Left"
+                            Style="{DynamicResource ToggleSwitchButtonStyle}" Visibility="Collapsed" />
+                        <TextBlock
+                            Margin="15,0,0,0"
+                            VerticalAlignment="Center"
+                            FontFamily="Sergio UI"
+                            FontSize="16" Visibility="Collapsed">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Text" Value="Light" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsChecked, ElementName=ThemeToggleSwitch}" Value="True">
+                                            <Setter Property="Text" Value="Dark" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsEnabled, ElementName=ThemeToggleSwitch}" Value="false">
+                                            <Setter Property="Opacity" Value="0.2" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="20,20,0,0">
+                    <TextBlock
+                        Style="{DynamicResource TitleTextBlockStyle}"
+                        Text="COLORS"
+                        TextWrapping="Wrap" />
+                    <TextBlock
+                        Margin="0,5,0,0"
+                        Style="{DynamicResource SubHeaderTextBlockStyle}"
+                        Text="Select application color:"
+                        TextWrapping="Wrap" />
+                    <controls:ToggleSwitch x:Name="UseSystemColorToggleSwitch" Header="Follow the Windows color" Margin="0,5,0,0"/>
+
+                </StackPanel>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="20,20,0,0">
+                    <TextBlock
+                        Style="{DynamicResource TitleTextBlockStyle}"
+                        Text="GlOW"
+                        TextWrapping="Wrap" />
+                    <controls:ToggleSwitch x:Name="GlowToggleSwitch" Header="Enable Window Glow" Margin="0,5,0,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="20,20,0,6">
+                    <TextBlock
+                        Style="{DynamicResource TitleTextBlockStyle}"
+                        Text="BORDER"
+                        TextWrapping="Wrap" />
+                    <controls:ToggleSwitch x:Name="BorderToggleSwitch" Header="Enable Window Glow" Margin="0,5,0,0"/>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Margin="20,20,0,0" Orientation="Vertical">
-                <TextBlock
-                    Style="{DynamicResource TitleTextBlockStyle}"
-                    Text="COLORS"
-                    TextWrapping="Wrap" />
-                <TextBlock
-                    Margin="0,5,0,0"
-                    Text="Select application color:"
-                    TextWrapping="Wrap" />
-            </StackPanel>
-        </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Window>
